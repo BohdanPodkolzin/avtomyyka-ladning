@@ -1,2 +1,23 @@
 @import "tailwindcss";
 
+.header-font {
+    @apply font-[Comfortaa] font-bold text-white;
+}
+
+.header-font-sections {
+    @apply font-['Comfortaa'] font-bold text-[1.15rem] text-white;
+}
+
+
+@layer utilities {
+    .parallelogram {
+      @apply relative bg-[#a11313] w-[30%] h-[80%];
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+    }
+  
+    .parallelogram::before {
+      content: "";
+      @apply absolute inset-0 bg-inherit z-[-1];
+      clip-path: inherit;
+    }
+  }
