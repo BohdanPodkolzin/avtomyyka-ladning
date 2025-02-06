@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "/muika.jpg";
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
-import '../index.css';
+import "../index.css";
 
 const Header = () => {
     const [openHamburgerMenu, setOpenHamburgerMenu] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    const handleScroll = () => {
+        if (window.scrollY > 50) {
+            setIsScrolled(true);
+        } else {
+            setIsScrolled(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const clickOnHumburgerMenu = () => {
         if (!openHamburgerMenu) {
@@ -17,20 +31,28 @@ const Header = () => {
     }
 
     return (
-        <nav className="flex justify-between items-center h-20 bg-[#090909]">
+        <nav
+            className={`flex header-bg sticky top-0 z-50 justify-between items-center h-20 transition-all duration-300 ${
+                isScrolled ? "bg-[#090909] shadow-md" : "bg-transparent"
+            }`}
+        >
 
             {/* Logo Section */}
-            <div className="flex xl:ml-15 lg:ml-10 ml-4">
-                <img 
-                    className='rounded-2xl border-[2.5px] border-[#a11313] cursor-pointer' 
-                    src={logo} 
-                    alt="Logo" 
-                    height={60} 
-                    width={60} 
-                />
+            <div className="flex xl:ml-15 lg:ml-10 ml-4" >
+                <a href="#">
+                    <img 
+                        className='rounded-2xl border-[2.5px] border-[#a11313] cursor-pointer' 
+                        src={logo} 
+                        alt="Logo" 
+                        height={60} 
+                        width={60} 
+                    />
+                </a>
                 <div className="ml-2 flex flex-col justify-center items-start header-font">
-                    <p className="leading-none">На</p>
-                    <p className="leading-none ml-2">Львівській</p>
+                    <a href="#">
+                        <p className="leading-none">На</p>
+                        <p className="leading-none ml-2">Львівській</p>
+                    </a>
                 </div>
             </div>
 
