@@ -194,6 +194,35 @@
   }
 }
 
+/* About Us Section */
+
+@keyframes moveLights {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.7; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.lights-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.light {
+  position: absolute;
+  width: 2px;
+  height: 100vh;
+  background: radial-gradient(rgba(161, 19, 19), rgba(0, 0, 0, 0));
+  animation: moveLights 4s infinite ease-in-out alternate;
+}
+
+/* Размещаем полоски в разных местах и даем разную скорость */
+.light:nth-child(1) { left: 20%; animation-duration: 3.5s; }
+.light:nth-child(2) { left: 40%; animation-duration: 4s; }
+.light:nth-child(3) { right: 25%; animation-duration: 5s; }
+.light:nth-child(4) { right: 10%; animation-duration: 6s; }
+
+
 
 
 
